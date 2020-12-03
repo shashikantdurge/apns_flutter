@@ -80,9 +80,17 @@ public class SwiftApnsFlutterPlugin: NSObject, FlutterPlugin, UNUserNotification
         }
         let token = tokenParts.joined()
         channel.invokeMethod("onToken", arguments: token)
+        print("NOTIFICATION APNS FLUTTER didRegisterForRemoteNotificationsWithDeviceToken")
+    }
+    
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
+
+        print("NOTIFICATION willPresent")
+        completionHandler([.badge, .alert, .sound])
     }
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("NOTIFICATION APNS FLUTTER userNotificationCenter")
         let notification = response.notification
         channel.invokeMethod("notificationTapped", arguments: [
             "id": notification.request.identifier,

@@ -1,6 +1,6 @@
 name: apns_flutter
 description: Use Flutter to interact with the native push notifications system on iOS.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/jacobwrenn/apns_flutter
 
 environment:
